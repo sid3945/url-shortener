@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import Url from "../models/Url.js";
+import {redisClient} from "../config/redis.js";
 
 async function generateShortUrl(req, res){
     console.log("req", req.body);
@@ -8,6 +9,7 @@ async function generateShortUrl(req, res){
     try{
         const existingUrl = await Url.findOne({originalUrl: originalURL});
         if(existingUrl){
+            await redisClient.set(originalURL, existingUrl, {EX: 3600});
             res.status(200).json(existingUrl);
         }
         else{
@@ -33,17 +35,23 @@ async function generateShortUrl(req, res){
 async function getOriginalUrl(req, res){
     const shortId = req.params.id;
     console.log("shortId", shortId);
+    const existingUrlFromCache = await redisClient.get(shortId);
+        if(existingUrlFromCache){
+            console.log("existingUrlFromCache", existingUrlFromCache);
+            res.status(200).json(existingUrlFromCache);
+        } else {
     try{
         const url = await Url.findOne({shortId: shortId});
         if(url){
             console.log("url", url);
             console.log(url.originalUrl);
+            await redisClient.set(shortId, url.originalUrl, {EX: 3600});
             res.status(200).json(url.originalUrl);
         }
     } catch (error){
         console.error("error getting original url", error);
         res.status(500).json({error: "error getting original url"});
-    }
+    }}
 }
 
 export {generateShortUrl, getOriginalUrl};
