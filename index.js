@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", userRoutes);
-app.use("/",isAuthenticated, urlRoutes);
+app.use("/urls",isAuthenticated, urlRoutes);
 
 connectDB();
 connectRedis();

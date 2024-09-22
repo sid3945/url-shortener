@@ -1,16 +1,26 @@
 import { getSession } from "../services/SessionService.js";
 
 async function isAuthenticated(req, response, next){
-    const userUid = req.cookies.uid;
+    console.log("isAuthenticated");
+    console.log(req.cookies);
+    try 
+    {
+        const userUid = req.cookies.sessionId;
     if(!userUid){
-        response.status(401).json({message: "Unauthorized"});
+        console.log("no user uid");
+        return response.status(401).json({message: "Unauthorized"});
     }
     const user = getSession(userUid);
     if(!user){
-        response.status(401).json({message: "Unauthorized"});
+        console.log("no user");
+        return response.status(401).json({message: "Unauthorized"});
     }
     req.user = user;
-    next();
+        next();
+    } catch (error) {
+        console.log(error);
+        return response.status(500).json({message: "Internal server error"});
+    }
 }
 
 export {isAuthenticated};

@@ -21,12 +21,13 @@ async function register(req, res) {
 async function login(req, res) {
     const {email, password} = req.body;
     const user = await User.findOne({email, password});
+    console.log("trying to login with user", user);
     if(!user){
         res.status(400).json({message: "Invalid email or password"});
     }
 
     const sessionId = uuidv4();
-    createSession(user._id, sessionId);
+    createSession(sessionId, user._id);
     res.cookie("sessionId", sessionId);
     res.status(200).json({message: "Login successful"});
 }
