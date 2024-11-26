@@ -1,8 +1,3 @@
-import {createClient} from "redis";
+import Redis from 'ioredis';
 
-const redisClient = createClient();
-
-async function connectRedis(){
-    await redisClient.connect();
-}
-export {redisClient, connectRedis};
+const redis = new Redis(redisConfig)

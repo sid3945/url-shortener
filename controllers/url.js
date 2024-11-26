@@ -39,19 +39,7 @@ async function getOriginalUrl(req, res){
         if(existingUrlFromCache){
             console.log("existingUrlFromCache", existingUrlFromCache);
             res.status(200).json(existingUrlFromCache);
-        } else {
-    try{
-        const url = await Url.findOne({shortId: shortId});
-        if(url){
-            console.log("url", url);
-            console.log(url.originalUrl);
-            await redisClient.set(shortId, url.originalUrl, {EX: 3600});
-            res.status(200).json(url.originalUrl);
         }
-    } catch (error){
-        console.error("error getting original url", error);
-        res.status(500).json({error: "error getting original url"});
-    }}
 }
 
 export {generateShortUrl, getOriginalUrl};
