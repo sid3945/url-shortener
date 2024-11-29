@@ -55,3 +55,8 @@ To generate a shortened URL, pass the original URL to the generateShortUrl() met
 
 ## Contributing
 Feel free to fork this repository and submit issues or pull requests for improvements!
+
+## To-Do
+1. URL Expiration based on custom parameters (for e.g. set number of clicks)
+2. Analytics Dashboard
+3. Bulk URL Shortening
