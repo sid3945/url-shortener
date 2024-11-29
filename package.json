@@ -7,11 +7,20 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Siddharth Upadhyay",
+  "license": "MIT",
   "description": "A lightweight, efficient, and secure URL shortener built with Node.js and Redis",
   "dependencies": {
-    "ioredis": "^5.4.1",
-    "redis": "^4.7.0"
-  }
+    "ioredis": "^5.4.1"
+  },
+  "keywords": [
+    "url",
+    "shortener",
+    "node",
+    "url shortener",
+    "short url",
+    "url-shortener",
+    "node-short url",
+    "express"
+  ]
 }
