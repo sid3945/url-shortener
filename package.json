@@ -9,9 +9,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A lightweight, efficient, and secure URL shortener built with Node.js and Redis",
   "dependencies": {
-    "dotenv": "^16.4.5",
     "ioredis": "^5.4.1",
     "redis": "^4.7.0"
   }
