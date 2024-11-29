@@ -13,7 +13,7 @@ A lightweight, efficient, and secure URL shortener built with Node.js and Redis.
 
 ## Installation
 
-```npm install your-url-shortener-package```
+```npm install @sid3945/url-shortener```
 
 ## Usage
 
@@ -22,7 +22,7 @@ A lightweight, efficient, and secure URL shortener built with Node.js and Redis.
 First, import and initialize the UrlShortener class by passing in your Redis configuration, TTL (Time-to-live) for URL expiration, and the desired length of the shortened URL.
 
 ```
-import UrlShortener from 'your-url-shortener-package';
+import UrlShortener from '@sid3945/url-shortener';
 
 const redisConfig = {
     host: 'localhost',
